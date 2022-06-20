@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import colors from '../../styles/constants/colors'
 
@@ -6,14 +6,26 @@ interface AppImageProp {
   background: string
 }
 
-const Container = styled.section`
+const appear = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
+export const Container = styled.section`
   position: relative;
   width: 1200px;
   padding-top: 150px;
   margin: 0 auto;
 `
 
-const AppImage = styled.div<AppImageProp>`
+export const AppImage = styled.div<AppImageProp>`
   position: absolute;
   top: 150px;
   width: 400px;
@@ -25,10 +37,17 @@ const AppImage = styled.div<AppImageProp>`
   background-image: ${(props) => `url(${props.background}) `};
   background-repeat: no-repeat;
   background-size: 400px 340px;
+  animation-name: ${appear};
+  animation-duration: 700ms;
 `
 
-const IndicatorList = styled.ul`
-  margin-left: 720px;
+export const IndicatorList = styled.ul`
+  margin-left: 690px;
+  opacity: 0;
+  animation-name: ${appear};
+  animation-duration: 700ms;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
 
   li {
     font-size: 36px;
@@ -41,9 +60,14 @@ const IndicatorList = styled.ul`
   }
 `
 
-const AwardList = styled.ul`
+export const AwardList = styled.ul`
   display: flex;
-  margin: 50px 0 0 720px;
+  margin: 50px 0 0 690px;
+  opacity: 0;
+  animation-name: ${appear};
+  animation-duration: 700ms;
+  animation-delay: 200ms;
+  animation-fill-mode: forwards;
 
   li {
     display: flex;
@@ -65,8 +89,6 @@ const AwardList = styled.ul`
   }
 
   li + li {
-    margin-left: 40px;
+    margin-left: 54px;
   }
 `
-
-export { Container, AppImage, IndicatorList, AwardList }

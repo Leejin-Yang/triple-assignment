@@ -1,10 +1,12 @@
-import TripleImage from '../../assets/images/triple2x.png'
-import PlayStoreImage from '../../assets/images/play-store2x.png'
-import AppleBadgeImage from '../../assets/images/badge-apple4x.png'
+import {
+  TripleImage,
+  PlayStoreImage,
+  AppleBadgeImage,
+} from '../../assets/images'
 
 import { Container, AppImage, IndicatorList, AwardList } from './style'
 
-function Award() {
+function Summary() {
   return (
     <Container>
       <AppImage background={TripleImage}>2021년 12월 기준</AppImage>
@@ -37,4 +39,4 @@ function Award() {
   )
 }
 
-export default Award
+export default Summary

@@ -1,10 +1,10 @@
 import { Container } from './style'
-import Award from './Award'
+import Summary from './Summary'
 
 function App() {
   return (
     <Container>
-      <Award />
+      <Summary />
     </Container>
   )
 }
