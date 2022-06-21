@@ -48,16 +48,6 @@ export const IndicatorList = styled.ul`
   animation-duration: 700ms;
   animation-delay: 100ms;
   animation-fill-mode: forwards;
-
-  li {
-    font-size: 36px;
-    line-height: 1.6;
-    color: ${colors.text};
-
-    strong {
-      font-weight: bold;
-    }
-  }
 `
 
 export const AwardList = styled.ul`
@@ -68,25 +58,6 @@ export const AwardList = styled.ul`
   animation-duration: 700ms;
   animation-delay: 200ms;
   animation-fill-mode: forwards;
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-      width: 54px;
-      height: 54px;
-    }
-
-    p {
-      padding-left: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 22px;
-      color: ${colors.textSecondary};
-    }
-  }
 
   li + li {
     margin-left: 54px;
