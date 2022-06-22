@@ -1,3 +1,5 @@
+import useCounter from '../../hooks/useCounter'
+
 import { IndicatorItem } from './style'
 
 interface Props {
@@ -7,10 +9,12 @@ interface Props {
 }
 
 function Indicator({ endPoint, unit, desc }: Props) {
+  const count = useCounter(endPoint, 2000, 150)
+
   return (
     <IndicatorItem>
       <strong>
-        {endPoint}
+        {count}
         {unit}
       </strong>
       {desc}
