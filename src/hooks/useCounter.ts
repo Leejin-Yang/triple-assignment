@@ -4,16 +4,13 @@ const easeOutExpo = (x: number) => {
   return x === 1 ? 1 : 1 - Math.pow(2, -10 * x)
 }
 
-const FRAME_DURATION = 1000 / 60
-
 function useCounter(endPoint: number, duration: number, delay: number) {
   const [count, setCount] = useState(0)
   const [isDelay, setIsDelay] = useState(false)
 
-  const frame = useRef(0)
+  const animation = useRef(0)
+  const startTime = useRef<number>()
   const timerDelay = useRef<NodeJS.Timer>()
-
-  const totalFrames = Math.round(duration / FRAME_DURATION)
 
   useEffect(() => {
     if (!isDelay) {
@@ -21,24 +18,30 @@ function useCounter(endPoint: number, duration: number, delay: number) {
     }
 
     const onFrame = () => {
-      const progress = easeOutExpo(frame.current / totalFrames)
+      const timestamp = new Date().getTime()
+
+      if (!startTime.current) {
+        startTime.current = timestamp
+      }
+
+      const progress = easeOutExpo((timestamp - startTime.current) / duration)
       const currentCount = Math.round(endPoint * progress)
 
       setCount(currentCount)
 
-      frame.current = requestAnimationFrame(onFrame)
+      animation.current = requestAnimationFrame(onFrame)
 
       if (endPoint === currentCount) {
-        cancelAnimationFrame(frame.current)
+        cancelAnimationFrame(animation.current)
       }
     }
 
     onFrame()
 
     return () => {
-      cancelAnimationFrame(frame.current)
+      cancelAnimationFrame(animation.current)
     }
-  }, [endPoint, isDelay, totalFrames])
+  }, [duration, endPoint, isDelay])
 
   useEffect(() => {
     timerDelay.current = setTimeout(() => {

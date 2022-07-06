@@ -5,7 +5,7 @@ interface Props {
 }
 
 function Count({ endPoint }: Props) {
-  const count = useCounter(endPoint, 2000, 150)
+  const count = useCounter(endPoint, 2000, 100)
 
   return <span>{count}</span>
 }
